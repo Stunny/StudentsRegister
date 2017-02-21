@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="edu.salleurl.ls30394.studentsregister.MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--PARALLAX IMAGE TOP-->
+            <ImageView
+                android:id="@+id/topImage"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+            <LinearLayout
+                android:layout_below="@id/topImage"
+                android:id="@+id/userForm_basicInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+                <TextView
+                    android:text="@string/user_info_title"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+                <!--NAME INPUT-->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/nameInputWrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin">
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/nameInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:hint="@string/nameInput_hint"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <!--EMAIL INPUT-->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/emailInputWrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin">
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/emailInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:hint="@string/email_hint"
+                        android:inputType="textEmailAddress"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <!--PASSWORD INPUT-->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/passwordInputWrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin">
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/passwordInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:hint="@string/password_hint"
+                        android:inputType="textPassword"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <!--CONFIRM PASSWORD INPUT-->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/confirmPasswordInputWrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/confirmPasswordInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:hint="@string/confirm_password_hint"
+                        android:inputType="textPassword"/>
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <!--ASK FOR DEVICE FORM-->
+            <LinearLayout
+                android:id="@+id/deviceAskForm"
+                android:layout_below="@id/userForm_basicInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--FORM TITLE LABEL-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/deviceAsk_label"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <!--LAPTOP CHECKBOX-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin">
+
+                    <CheckBox
+                        android:id="@+id/check_laptop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/checkbox_laptop"/>
+
+                    <ImageView
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:src="@drawable/ic_laptop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <!--ANDROID PHONE CHECKBOX-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin">
+
+                    <CheckBox
+                        android:id="@+id/check_andphone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/check_android_phone"/>
+
+                    <ImageView
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:src="@drawable/ic_android_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--AGE FORM-->
+            <LinearLayout
+                android:id="@+id/ageForm"
+                android:layout_below="@id/deviceAskForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+                <!--AGE FORM TITLE-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ageform_title"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <!--AGE FORM RADIO BUTTON GROUP-->
+                <RadioGroup
+                    android:id="@+id/ageForm_select"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!--YOUNGER THAN 18-->
+                    <RadioButton
+                        android:id="@+id/age_younger18"
+                        android:text="@string/younger_18"
+                        android:checked="true"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <!--BETWEEN 18 AND 65-->
+                    <RadioButton
+                        android:id="@+id/age_18to65"
+                        android:text="@string/age_18to65"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <!--65 OR OLDER-->
+                    <RadioButton
+                        android:id="@+id/age_65"
+                        android:text="@string/age_65"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RadioGroup>
+            </LinearLayout>
+
+            <Button
+                android:text="@string/register_btn_txt"
+                android:layout_below="@id/ageForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

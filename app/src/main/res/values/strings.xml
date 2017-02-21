@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">StudentsRegister</string>
+    <string name="password_hint">Password</string>
+    <string name="confirm_password_hint">Confirm Password</string>
+    <string name="email_hint">Email</string>
+    <string name="nameInput_hint">Name</string>
+    <string name="deviceAsk_label">Do you have?</string>
+    <string name="checkbox_laptop">Laptop</string>
+    <string name="check_android_phone">Android phone</string>
+    <string name="user_info_title">Personal Information</string>
+    <string name="ageform_title">Age</string>
+    <string name="younger_18"><![CDATA[<18]]></string>
+    <string name="age_18to65">18-65</string>
+    <string name="age_65">65</string>
+    <string name="register_btn_txt">Register</string>
+</resources>
