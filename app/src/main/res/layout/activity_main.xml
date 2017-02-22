@@ -185,6 +185,7 @@
                         android:id="@+id/check_andphone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:onClick="onToggleAndroidDeviceCheckbox"
                         android:text="@string/check_android_phone"/>
 
                     <ImageView
