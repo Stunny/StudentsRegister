@@ -4,6 +4,9 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.CheckBox;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,5 +22,15 @@ public class MainActivity extends AppCompatActivity {
         ctl.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
     }
 
+
+    public void onToggleAndroidDeviceCheckbox(View view){
+        Log.d("ANDROID DEVICE", "Toggle Checkbox");
+
+        CheckBox cb = (CheckBox) view;
+
+        if(cb.isChecked()){
+            Log.d("CHECKBOX", "Checked");
+        }
+    }
 
 }
