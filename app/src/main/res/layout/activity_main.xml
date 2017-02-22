@@ -28,6 +28,7 @@
             <ImageView
                 android:id="@+id/topImage"
                 android:src="@mipmap/img_lasalle"
+                android:contentDescription="@string/logo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -168,6 +169,7 @@
                     <ImageView
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:src="@drawable/ic_laptop"
+                        android:contentDescription="@string/icon_laptop"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -191,8 +193,19 @@
                     <ImageView
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:src="@drawable/ic_android_phone"
+                        android:contentDescription="@string/icon_phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
+
+                    <Spinner
+                        android:id="@+id/andphoneVersionSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/android_versions"
+                        android:visibility="gone"
+                        android:animateLayoutChanges="true"
+                        android:spinnerMode="dropdown"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -251,6 +264,7 @@
             <!--REGISTER BUTTON-->
             <Button
                 android:text="@string/register_btn_txt"
+                android:onClick="onRegisterClicked"
                 android:layout_below="@id/ageForm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

@@ -13,4 +13,16 @@
     <string name="age_18to65">18-65</string>
     <string name="age_65">65</string>
     <string name="register_btn_txt">Register</string>
+    <string name="logo">Logo</string>
+    <string name="icon_laptop">laptop_icon</string>
+    <string name="icon_phone">icon_phone</string>
+
+    <string-array name="android_versions">
+        <item>Version</item>
+        <item>Jelly Bean</item>
+        <item>KitKat</item>
+        <item>Lollipop</item>
+        <item>Marshmallow</item>
+        <item>Nougat</item>
+    </string-array>
 </resources>
