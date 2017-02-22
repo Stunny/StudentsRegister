@@ -2,15 +2,24 @@ package edu.salleurl.ls30394.studentsregister;
 
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    //-------------------------------------FORM WIDGETS-------------------------------------------//
+    private TextInputLayout tilNameInput;
+    private TextInputLayout tilEmailInput;
+    private TextInputLayout tilPasswdInput;
+    private TextInputLayout tilPsswdConfirm;
 
     private TextInputEditText tietNameInput;
     private TextInputEditText tietEmailInput;
@@ -24,21 +33,31 @@ public class MainActivity extends AppCompatActivity {
 
     private RadioGroup rgAgeGroupSelect;
 
+    //------------------------------------INITIALIZATION OF ACTIVITY------------------------------//
+
     @Override
+    /**
+     * Creation of the main view oif the app
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initWidgets();
+        getWidgets();
+        initToolBar();
 
-        ViewCompat.setTransitionName(findViewById(R.id.appBarLayout), "Transition");
-
-        CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbar);
-        ctl.setTitle("Students Register");
-        ctl.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
     }
 
-    private void initWidgets(){
+    /**
+     * Initializes every widget attribute that shall be required
+     * in order to process user data
+     */
+    private void getWidgets(){
+
+        tilNameInput     = (TextInputLayout) findViewById(R.id.nameInputWrapper);
+        tilEmailInput    = (TextInputLayout) findViewById(R.id.emailInputWrapper);
+        tilPasswdInput   = (TextInputLayout) findViewById(R.id.passwordInputWrapper);
+        tilPsswdConfirm  = (TextInputLayout) findViewById(R.id.confirmPasswordInputWrapper);
 
         tietNameInput    = (TextInputEditText) findViewById(R.id.nameInput);
         tietEmailInput   = (TextInputEditText) findViewById(R.id.emailInput);
@@ -51,38 +70,193 @@ public class MainActivity extends AppCompatActivity {
         spAndVersion     = (Spinner) findViewById(R.id.andphoneVersionSpinner);
 
         rgAgeGroupSelect = (RadioGroup) findViewById(R.id.ageForm_select);
+
     }
 
+    //----------------------------------ALL THE ACTIVITY'S GRAPHIC FUNCTIONALITIES----------------//
+
+    /**
+     * Initializes the activvity ToolBar
+     */
+    private void initToolBar(){
+        ViewCompat.setTransitionName(findViewById(R.id.appBarLayout), "Transition");
+        CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbar);
+        ctl.setTitle("Students Register");
+        ctl.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
+    }
+
+    /**
+     * Either shows or makes disappear the android version Spinner
+     * depending on the checkbox's state
+     * @param view Android Phone checkbox
+     */
     public void onToggleAndroidDeviceCheckbox(View view){
 
-        CheckBox cb = (CheckBox) view;
-
-        if(cb.isChecked()) {
+        if(cbAndPhone.isChecked()) {
             spAndVersion.setVisibility(View.VISIBLE);
         }else{
             spAndVersion.setVisibility(View.GONE);
         }
     }
 
+    /**
+     * Sets a new error on the user name input
+     * @param message Error message to be shown
+     */
+    private void setUserNameInputError(String message){
+        tilNameInput.setErrorEnabled(true);
+        tietNameInput.setError(message);
+    }
 
-    public void onRegisterClicked(View view){
+    /**
+     * Sets a new error on the user email input
+     * @param message Error message to be shown
+     */
+    private void setUserEmailInputError(String message){
 
-        if(userDataOK()){
-            saveUser();
+        tilEmailInput.setErrorEnabled(true);
+        tietEmailInput.setError(message);
+
+    }
+
+    /**
+     * Sets a new error on the user password input
+     * @param message Error message to be shown
+     */
+    private void setUserPasswordInputError(String message){
+        tilPasswdInput.setErrorEnabled(true);
+        tilPsswdConfirm.setErrorEnabled(true);
+        tietPasswdInput.setError(message);
+        tietPsswdConfirm.setError(message);
+    }
+
+
+    //------------------------------------USER FORM LOGIC FUNCTIONALITIES-------------------------//
+    /**
+     *
+     * @param view
+     */
+    public void onTypeDisableError(View view){
+
+        Log.d("ID", view.getClass().toString()+"--"+view.getId());
+        switch(view.getId()){
+            case R.id.nameInput:
+                tietNameInput.setError(null);
+                tilNameInput.setErrorEnabled(false);
+                break;
+            case R.id.emailInput:
+                tietEmailInput.setError(null);
+                tilEmailInput.setErrorEnabled(false);
+                break;
+            case R.id.passwordInput:
+                tietPasswdInput.setError(null);
+                tilPasswdInput.setErrorEnabled(false);
+                break;
+            case R.id.confirmPasswordInput:
+                tietPsswdConfirm.setError(null);
+                tilPsswdConfirm.setErrorEnabled(false);
+                break;
+            default:
         }
 
     }
 
-    public boolean userDataOK(){
+    /**
+     * Action to perform when the "Register" button is clicked
+     * @param view Clicked button
+     */
+    public void onRegisterClicked(View view){
+
+        if(userDataOK())
+            saveUser();
+
+    }
+
+    /**
+     * @return True if the user's data has been correctly introduced
+     */
+    private boolean userDataOK(){
 
         boolean allOK = true;
 
+        String
+            userName            = tietNameInput.getText().toString(),
+            userEmail           = tietEmailInput.getText().toString(),
+            userPass            = tietPasswdInput.getText().toString(),
+            confirmationPass    = tietPsswdConfirm.getText().toString();
 
+        if(!userNameOK(userName)) allOK = false;
+        if(!userEmailOK(userEmail)) allOK = false;
+        if(!userPasswordOK(userPass, confirmationPass)) allOK = false;
 
         return allOK;
     }
 
-    public void saveUser(){
+    /**
+     * @param name User name typed in TextInputEditText
+     * @return True if the user name is valid
+     */
+    private boolean userNameOK(String name){
+
+        boolean nameOK = true;
+
+        if(!name.contains(" ") || name.equalsIgnoreCase("")){
+            nameOK = false;
+            setUserNameInputError(getString(R.string.username_error_msg));
+        }
+
+        return nameOK;
+    }
+
+    /**
+     * @param email User email typed in TextInputEditText
+     * @return True if has a valid format
+     */
+    private boolean userEmailOK(String email){
+
+        boolean emailOK = true;
+        int qAts = email.split("@", -1).length -1;
+
+        if(!email.contains("@")
+                || (qAts == 0)
+                || (qAts > 1)
+                ||  email.equalsIgnoreCase(""))
+        {
+            emailOK = false;
+            setUserEmailInputError(getString(R.string.email_input_error_msg));
+        }
+
+        return emailOK;
+    }
+
+    /**
+     * @param password Chosen user password
+     * @param passConfirm Confirmation of the chosen password
+     * @return True if both password fields match
+     */
+    private boolean userPasswordOK(String password, String passConfirm){
+
+        boolean passwdOK = true;
+        String errorMsg = "";
+
+        if(!password.equals(passConfirm)){
+            passwdOK = false;
+            errorMsg = getString(R.string.passwds_dont_match);
+        }
+
+        else if(password.equals("") || passConfirm.equals("")){
+            passwdOK = false;
+            errorMsg = getString(R.string.incomplete_psswd_msg);
+        }
+
+        if(!passwdOK) setUserPasswordInputError(errorMsg);
+        return passwdOK;
+    }
+
+    /**
+     * Saves the new user in the system and shows its data on screen
+     */
+    private void saveUser(){
 
     }
 

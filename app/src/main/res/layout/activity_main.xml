@@ -84,6 +84,7 @@
                         android:id="@+id/nameInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:onClick="onTypeDisableError"
                         android:maxLines="1"
                         android:hint="@string/nameInput_hint"/>
                 </android.support.design.widget.TextInputLayout>
@@ -98,6 +99,7 @@
                         android:id="@+id/emailInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:onClick="onTypeDisableError"
                         android:maxLines="1"
                         android:hint="@string/email_hint"
                         android:inputType="textEmailAddress"/>
@@ -113,6 +115,7 @@
                         android:id="@+id/passwordInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:onClick="onTypeDisableError"
                         android:maxLines="1"
                         android:hint="@string/password_hint"
                         android:inputType="textPassword"/>
@@ -129,6 +132,7 @@
                         android:id="@+id/confirmPasswordInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:onClick="onTypeDisableError"
                         android:maxLines="1"
                         android:hint="@string/confirm_password_hint"
                         android:inputType="textPassword"/>

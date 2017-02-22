@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Registro de Estudiante</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="confirm_password_hint">Repetir contraseña</string>
+    <string name="email_hint">Correo Electronico</string>
+    <string name="nameInput_hint">Nombre</string>
+    <string name="deviceAsk_label">Dispones de?</string>
+    <string name="checkbox_laptop">Portátil</string>
+    <string name="check_android_phone">Teléfono Android</string>
+    <string name="user_info_title">Informacion personal</string>
+    <string name="ageform_title">Edad</string>
+    <string name="younger_18"><![CDATA[<18]]></string>
+    <string name="age_18to65">18-65</string>
+    <string name="age_65">65</string>
+    <string name="register_btn_txt">Registrarse</string>
+    <string name="logo">Logo</string>
+    <string name="icon_laptop">icono_portatil</string>
+    <string name="icon_phone">icono_movil</string>
+    <string name="select_and_version">Seleccione Version</string>
+
+    <string-array name="android_versions">
+        <item>Versión</item>
+        <item>Jelly Bean</item>
+        <item>KitKat</item>
+        <item>Lollipop</item>
+        <item>Marshmallow</item>
+        <item>Nougat</item>
+    </string-array>
+</resources>

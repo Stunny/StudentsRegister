@@ -16,6 +16,11 @@
     <string name="logo">Logo</string>
     <string name="icon_laptop">laptop_icon</string>
     <string name="icon_phone">icon_phone</string>
+    <string name="select_and_version">Select version</string>
+    <string name="username_error_msg">Please type your complete name</string>
+    <string name="passwds_dont_match">Passwords don\'t match</string>
+    <string name="email_input_error_msg">Please, type a valid email</string>
+    <string name="incomplete_psswd_msg">Please finish typing your password</string>
 
     <string-array name="android_versions">
         <item>Version</item>
