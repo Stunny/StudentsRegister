@@ -11,6 +11,11 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import edu.salleurl.ls30394.studentsregister.Model.Phone;
+import edu.salleurl.ls30394.studentsregister.Model.User;
+import edu.salleurl.ls30394.studentsregister.Model.UserAndroidPhone;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -134,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
     //------------------------------------USER FORM LOGIC FUNCTIONALITIES-------------------------//
     /**
      *
-     * @param view
+     * @param view clicked TextInputEditText
      */
     public void onTypeDisableError(View view){
 
@@ -188,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
         if(!userNameOK(userName)) allOK = false;
         if(!userEmailOK(userEmail)) allOK = false;
         if(!userPasswordOK(userPass, confirmationPass)) allOK = false;
+        if(cbAndPhone.isChecked() && !(andVersionSelected())) allOK = false;
 
         return allOK;
     }
@@ -254,10 +260,67 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * @return True if Android version of spinner has been selected
+     */
+    private boolean andVersionSelected(){
+
+        boolean versionOK = true;
+
+        if(spAndVersion.getSelectedItem().toString()
+                .equals(getString(R.string.and_select))) {
+
+            versionOK = false;
+            Toast.makeText(this, R.string.ask_and_version_toast, Toast.LENGTH_SHORT).show();
+        }
+
+        return versionOK;
+    }
+
+    /**
      * Saves the new user in the system and shows its data on screen
      */
     private void saveUser(){
 
+        User u = new User(tietNameInput.getText().toString());
+
+        u.setUserEmail(tietEmailInput.getText().toString());
+        u.setUserPassword(tietPasswdInput.getText().toString());
+        u.setHasLaptop(cbLaptop.isChecked());
+        u.setHasAndPhone(cbAndPhone.isChecked());
+
+        Phone userPhone;
+
+        if(u.hasAndPhone()){
+            userPhone = new UserAndroidPhone();
+            switch(spAndVersion.getSelectedItem().toString()){
+                case "Jelly Bean":
+                    ((UserAndroidPhone)userPhone)
+                            .setAndroidVersion(UserAndroidPhone.JELLY_BEAN);
+                    break;
+                case "KitKat":
+                    ((UserAndroidPhone)userPhone)
+                            .setAndroidVersion(UserAndroidPhone.KITKAT);
+                    break;
+                case "Lollipop":
+                    ((UserAndroidPhone)userPhone)
+                            .setAndroidVersion(UserAndroidPhone.LOLLIPOP);
+                    break;
+                case "Marshmallow":
+                    ((UserAndroidPhone)userPhone)
+                            .setAndroidVersion(UserAndroidPhone.MARSHMALLOW);
+                    break;
+                case "Nougat":
+                    ((UserAndroidPhone)userPhone)
+                            .setAndroidVersion(UserAndroidPhone.NOUGAT);
+                    break;
+            }
+        }else{
+            userPhone = new Phone();
+        }
+
+        u.setCellPhone(userPhone);
+
+        u.logInfo();
     }
 
 }

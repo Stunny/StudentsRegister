@@ -30,4 +30,12 @@
         <item>Marshmallow</item>
         <item>Nougat</item>
     </string-array>
+
+    <string name="and_select">Version</string>
+    <string name="and_jb">Jelly Bean</string>
+    <string name="and_kk">KitKat</string>
+    <string name="and_llp">Lollipop</string>
+    <string name="and_mm">Marshmallow</string>
+    <string name="and_ngt">Nougat</string>
+    <string name="ask_and_version_toast">Please select an Android Version</string>
 </resources>

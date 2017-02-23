@@ -1,5 +1,7 @@
 package edu.salleurl.ls30394.studentsregister.Model;
 
+import android.util.Log;
+
 /**
  * Created by avoge on 22/02/2017.
  */
@@ -157,5 +159,20 @@ public class User {
      */
     public void setCellPhone(Phone cellPhone) {
         this.cellPhone = cellPhone;
+    }
+
+    /**
+     * Displays all the user's information on the Android Monitor
+     */
+    public void logInfo(){
+        Log.d(" ", "//------------------------------------------------------------------------//");
+        Log.d("User Name", userName);
+        Log.d("User Email", userEmail);
+        Log.d("User Password", userPassword);
+        Log.d("User has Laptop", Boolean.toString(hasLaptop));
+        Log.d("User has Android Phone", Boolean.toString(hasAndPhone));
+        if(hasAndPhone)
+            Log.d("User's Phone API Level",
+                    Integer.toString(((UserAndroidPhone)cellPhone).getAndroidVersion()));
     }
 }

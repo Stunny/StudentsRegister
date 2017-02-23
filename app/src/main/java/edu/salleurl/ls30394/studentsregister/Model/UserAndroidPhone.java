@@ -14,7 +14,16 @@ public class UserAndroidPhone extends Phone{
 
     private int androidVersion;
 
+    public UserAndroidPhone() {}
     public UserAndroidPhone(int androidVersion) {
+        this.androidVersion = androidVersion;
+    }
+
+    public int getAndroidVersion() {
+        return androidVersion;
+    }
+
+    public void setAndroidVersion(int androidVersion) {
         this.androidVersion = androidVersion;
     }
 }
