@@ -167,6 +167,17 @@ public class User {
     public void logInfo(){
         Log.d(" ", "//------------------------------------------------------------------------//");
         Log.d("User Name", userName);
+        switch(ageGroup){
+            case YOUNGER_THAN_18:
+                Log.d("User Age Group", "Younger than 18yo");
+                break;
+            case BETWEEN_18_65:
+                Log.d("User Age Group", "Between 18 and 65 yo");
+                break;
+            case OLDER_THAN_65:
+                Log.d("User Age Group", "Older than 65 yo");
+                break;
+        }
         Log.d("User Email", userEmail);
         Log.d("User Password", userPassword);
         Log.d("User has Laptop", Boolean.toString(hasLaptop));

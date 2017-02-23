@@ -1,14 +1,17 @@
 package edu.salleurl.ls30394.studentsregister;
 
+import android.content.DialogInterface;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -86,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     private void initToolBar(){
         ViewCompat.setTransitionName(findViewById(R.id.appBarLayout), "Transition");
         CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbar);
-        ctl.setTitle("Students Register");
+        ctl.setTitle(getString(R.string.app_name));
         ctl.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
     }
 
@@ -96,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
      * @param view Android Phone checkbox
      */
     public void onToggleAndroidDeviceCheckbox(View view){
+
+        spAndVersion.setSelection(0);
 
         if(cbAndPhone.isChecked()) {
             spAndVersion.setVisibility(View.VISIBLE);
@@ -135,6 +140,76 @@ public class MainActivity extends AppCompatActivity {
         tietPsswdConfirm.setError(message);
     }
 
+    /**
+     * Once the user has completed the registration, all the information will be displayed
+     * on a confirmation dialog, which will also clear the form
+     * @param u User to be displayed
+     */
+    private void dialogUserInfo(User u){
+
+        AlertDialog.Builder adBuilder = new AlertDialog.Builder(this);
+        adBuilder.setTitle(R.string.user_info);
+        adBuilder.setIcon(R.drawable.ic_user);
+
+        adBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+
+        StringBuilder adSb = new StringBuilder(getString(R.string.nameInput_hint));
+        adSb.append(getString(R.string.attrname_value_separator));
+        adSb.append(u.getUserName());
+        adSb.append('\n');
+
+        adSb.append(getString(R.string.email_hint));
+        adSb.append(getString(R.string.attrname_value_separator));
+        adSb.append(u.getUserEmail());
+        adSb.append('\n');
+
+        adSb.append(getString(R.string.password_hint));
+        adSb.append(getString(R.string.attrname_value_separator));
+        adSb.append(u.getUserPassword());
+        adSb.append('\n');
+
+        adSb.append(getString(R.string.ageform_title));
+        adSb.append(getString(R.string.attrname_value_separator));
+        switch(u.getAgeGroup()){
+            case User.YOUNGER_THAN_18:
+                adSb.append(getString(R.string.younger_than_18));
+                break;
+            case User.BETWEEN_18_65:
+                adSb.append(getString(R.string.between_18_65));
+                break;
+            case User.OLDER_THAN_65:
+                adSb.append(getString(R.string.older_than_65));
+        }
+        adSb.append('\n');
+
+        adSb.append(getString(R.string.has_laptop));
+        adSb.append(getString(R.string.attrname_value_separator));
+        adSb.append(u.hasLaptop()? getString(R.string.yes) : getString(R.string.no));
+        adSb.append('\n');
+
+        adSb.append(getString(R.string.has_and_phone));
+        adSb.append(getString(R.string.attrname_value_separator));
+        adSb.append(u.hasAndPhone()? getString(R.string.yes) : getString(R.string.no));
+        adSb.append('\n');
+
+        if(u.hasAndPhone()){
+            adSb.append("Android API Level");
+            adSb.append(getString(R.string.attrname_value_separator));
+            adSb.append(((UserAndroidPhone)u.getCellPhone()).getAndroidVersion());
+        }
+
+        adBuilder.setMessage(adSb.toString());
+
+        AlertDialog userAlert = adBuilder.create();
+
+        userAlert.show();
+    }
+
 
     //------------------------------------USER FORM LOGIC FUNCTIONALITIES-------------------------//
     /**
@@ -172,15 +247,14 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onRegisterClicked(View view){
 
-        if(userDataOK())
+        if(isUserDataOK())
             saveUser();
-
     }
 
     /**
      * @return True if the user's data has been correctly introduced
      */
-    private boolean userDataOK(){
+    private boolean isUserDataOK(){
 
         boolean allOK = true;
 
@@ -190,10 +264,10 @@ public class MainActivity extends AppCompatActivity {
             userPass            = tietPasswdInput.getText().toString(),
             confirmationPass    = tietPsswdConfirm.getText().toString();
 
-        if(!userNameOK(userName)) allOK = false;
-        if(!userEmailOK(userEmail)) allOK = false;
-        if(!userPasswordOK(userPass, confirmationPass)) allOK = false;
-        if(cbAndPhone.isChecked() && !(andVersionSelected())) allOK = false;
+        if(!isUserNameOK(userName)) allOK = false;
+        if(!isUserEmailOK(userEmail)) allOK = false;
+        if(!isUserPasswordOK(userPass, confirmationPass)) allOK = false;
+        if(cbAndPhone.isChecked() && !(isAndroidVersionSelected())) allOK = false;
 
         return allOK;
     }
@@ -202,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
      * @param name User name typed in TextInputEditText
      * @return True if the user name is valid
      */
-    private boolean userNameOK(String name){
+    private boolean isUserNameOK(String name){
 
         boolean nameOK = true;
 
@@ -218,7 +292,7 @@ public class MainActivity extends AppCompatActivity {
      * @param email User email typed in TextInputEditText
      * @return True if has a valid format
      */
-    private boolean userEmailOK(String email){
+    private boolean isUserEmailOK(String email){
 
         boolean emailOK = true;
         int qAts = email.split("@", -1).length -1;
@@ -240,7 +314,7 @@ public class MainActivity extends AppCompatActivity {
      * @param passConfirm Confirmation of the chosen password
      * @return True if both password fields match
      */
-    private boolean userPasswordOK(String password, String passConfirm){
+    private boolean isUserPasswordOK(String password, String passConfirm){
 
         boolean passwdOK = true;
         String errorMsg = "";
@@ -262,7 +336,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * @return True if Android version of spinner has been selected
      */
-    private boolean andVersionSelected(){
+    private boolean isAndroidVersionSelected(){
 
         boolean versionOK = true;
 
@@ -287,6 +361,21 @@ public class MainActivity extends AppCompatActivity {
         u.setUserPassword(tietPasswdInput.getText().toString());
         u.setHasLaptop(cbLaptop.isChecked());
         u.setHasAndPhone(cbAndPhone.isChecked());
+
+        RadioButton selectedAge = (RadioButton)
+                findViewById(rgAgeGroupSelect.getCheckedRadioButtonId());
+
+        switch(selectedAge.getText().toString()){
+            case "<18":
+                u.setAgeGroup(User.YOUNGER_THAN_18);
+                break;
+            case "18-65":
+                u.setAgeGroup(User.BETWEEN_18_65);
+                break;
+            case "65":
+                u.setAgeGroup(User.OLDER_THAN_65);
+                break;
+        }
 
         Phone userPhone;
 
@@ -321,6 +410,25 @@ public class MainActivity extends AppCompatActivity {
         u.setCellPhone(userPhone);
 
         u.logInfo();
+        dialogUserInfo(u);
+        clearForm();
+    }
+
+    /**
+     * Resets all Inputs to their original state
+     */
+    private void clearForm(){
+
+        tietNameInput.getText().clear();
+        tietEmailInput.getText().clear();
+        tietPasswdInput.getText().clear();
+        tietPsswdConfirm.getText().clear();
+
+        if(cbLaptop.isChecked()) cbLaptop.toggle();
+        if(cbAndPhone.isChecked()) cbAndPhone.toggle();
+        onToggleAndroidDeviceCheckbox(cbAndPhone);
+
+        ((RadioButton)findViewById(R.id.age_younger18)).setChecked(true);
     }
 
 }

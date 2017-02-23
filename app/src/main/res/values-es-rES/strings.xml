@@ -8,11 +8,8 @@
     <string name="deviceAsk_label">Dispones de?</string>
     <string name="checkbox_laptop">Portátil</string>
     <string name="check_android_phone">Teléfono Android</string>
-    <string name="user_info_title">Informacion personal</string>
+    <string name="user_info_title">Información personal</string>
     <string name="ageform_title">Edad</string>
-    <string name="younger_18"><![CDATA[<18]]></string>
-    <string name="age_18to65">18-65</string>
-    <string name="age_65">65</string>
     <string name="register_btn_txt">Registrarse</string>
     <string name="logo">Logo</string>
     <string name="icon_laptop">icono_portatil</string>
@@ -27,4 +24,17 @@
         <item>Marshmallow</item>
         <item>Nougat</item>
     </string-array>
+    <string name="ask_and_version_toast">Por favor, seleccione una version de Android</string>
+    <string name="email_input_error_msg">Por favor, introduzca un email válido</string>
+    <string name="incomplete_psswd_msg">Por favor, termine de escribir su contraseña</string>
+    <string name="passwds_dont_match">Las contraseñas no coinciden</string>
+    <string name="username_error_msg">Por favor, introduzca su nombre completo</string>
+    <string name="user_info">Información de Usuario</string>
+    <string name="younger_than_18">Menor de 18 años</string>
+    <string name="between_18_65">Entre 18 y 65 años</string>
+    <string name="has_laptop">Posee un ordenador portátil</string>
+    <string name="has_and_phone">Posee un teléfono Android</string>
+    <string name="no">No</string>
+    <string name="older_than_65">Mayor de 65 años</string>
+    <string name="yes">Sí</string>
 </resources>

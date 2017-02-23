@@ -9,9 +9,9 @@
     <string name="check_android_phone">Android phone</string>
     <string name="user_info_title">Personal Information</string>
     <string name="ageform_title">Age</string>
-    <string name="younger_18"><![CDATA[<18]]></string>
-    <string name="age_18to65">18-65</string>
-    <string name="age_65">65</string>
+    <string name="younger_18" translatable="false"><![CDATA[<18]]></string>
+    <string name="age_18to65" translatable="false">18-65</string>
+    <string name="age_65" translatable="false">65</string>
     <string name="register_btn_txt">Register</string>
     <string name="logo">Logo</string>
     <string name="icon_laptop">laptop_icon</string>
@@ -31,11 +31,20 @@
         <item>Nougat</item>
     </string-array>
 
-    <string name="and_select">Version</string>
-    <string name="and_jb">Jelly Bean</string>
-    <string name="and_kk">KitKat</string>
-    <string name="and_llp">Lollipop</string>
-    <string name="and_mm">Marshmallow</string>
-    <string name="and_ngt">Nougat</string>
+    <string name="and_select" translatable="false">Version</string>
+    <string name="and_jb" translatable="false">Jelly Bean</string>
+    <string name="and_kk" translatable="false">KitKat</string>
+    <string name="and_llp" translatable="false">Lollipop</string>
+    <string name="and_mm" translatable="false">Marshmallow</string>
+    <string name="and_ngt" translatable="false">Nougat</string>
     <string name="ask_and_version_toast">Please select an Android Version</string>
+    <string name="user_info">User Information</string>
+    <string name="younger_than_18">Younger than 18</string>
+    <string name="between_18_65">Between 18 and 65yo</string>
+    <string name="older_than_65">Older than 65 yo</string>
+    <string name="has_laptop">Owns a laptop</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="has_and_phone">Owns an Android Phone</string>
+    <string name="attrname_value_separator" translatable="false">": "</string>
 </resources>
