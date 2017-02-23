@@ -3,7 +3,11 @@ package edu.salleurl.ls30394.studentsregister.Model;
 import android.util.Log;
 
 /**
+ * Class that defines a User
  * Created by avoge on 22/02/2017.
+ * @author Alex Vogel
+ * @version 1.0.0
+ * @last_modified 22/02/2017
  */
 
 public class User {

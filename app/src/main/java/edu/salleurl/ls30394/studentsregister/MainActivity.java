@@ -20,14 +20,20 @@ import edu.salleurl.ls30394.studentsregister.Model.Phone;
 import edu.salleurl.ls30394.studentsregister.Model.User;
 import edu.salleurl.ls30394.studentsregister.Model.UserAndroidPhone;
 
+/**
+ * Main and only activity for the Register form
+ * @author Alex Vogel
+ * @version 1.0.0
+ * @last_modification 23/02/2017
+ */
 public class MainActivity extends AppCompatActivity {
 
 
     //-------------------------------------FORM WIDGETS-------------------------------------------//
-    private TextInputLayout tilNameInput;
-    private TextInputLayout tilEmailInput;
-    private TextInputLayout tilPasswdInput;
-    private TextInputLayout tilPsswdConfirm;
+    private TextInputLayout tilNameInputWrapper;
+    private TextInputLayout tilEmailInputWrapper;
+    private TextInputLayout tilPasswdInputWrapper;
+    private TextInputLayout tilPsswdConfirmWrapper;
 
     private TextInputEditText tietNameInput;
     private TextInputEditText tietEmailInput;
@@ -62,10 +68,10 @@ public class MainActivity extends AppCompatActivity {
      */
     private void getWidgets(){
 
-        tilNameInput     = (TextInputLayout) findViewById(R.id.nameInputWrapper);
-        tilEmailInput    = (TextInputLayout) findViewById(R.id.emailInputWrapper);
-        tilPasswdInput   = (TextInputLayout) findViewById(R.id.passwordInputWrapper);
-        tilPsswdConfirm  = (TextInputLayout) findViewById(R.id.confirmPasswordInputWrapper);
+        tilNameInputWrapper = (TextInputLayout) findViewById(R.id.nameInputWrapper);
+        tilEmailInputWrapper = (TextInputLayout) findViewById(R.id.emailInputWrapper);
+        tilPasswdInputWrapper = (TextInputLayout) findViewById(R.id.passwordInputWrapper);
+        tilPsswdConfirmWrapper = (TextInputLayout) findViewById(R.id.confirmPasswordInputWrapper);
 
         tietNameInput    = (TextInputEditText) findViewById(R.id.nameInput);
         tietEmailInput   = (TextInputEditText) findViewById(R.id.emailInput);
@@ -114,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
      * @param message Error message to be shown
      */
     private void setUserNameInputError(String message){
-        tilNameInput.setErrorEnabled(true);
+        tilNameInputWrapper.setErrorEnabled(true);
         tietNameInput.setError(message);
     }
 
@@ -124,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setUserEmailInputError(String message){
 
-        tilEmailInput.setErrorEnabled(true);
+        tilEmailInputWrapper.setErrorEnabled(true);
         tietEmailInput.setError(message);
 
     }
@@ -134,8 +140,8 @@ public class MainActivity extends AppCompatActivity {
      * @param message Error message to be shown
      */
     private void setUserPasswordInputError(String message){
-        tilPasswdInput.setErrorEnabled(true);
-        tilPsswdConfirm.setErrorEnabled(true);
+        tilPasswdInputWrapper.setErrorEnabled(true);
+        tilPsswdConfirmWrapper.setErrorEnabled(true);
         tietPasswdInput.setError(message);
         tietPsswdConfirm.setError(message);
     }
@@ -222,19 +228,19 @@ public class MainActivity extends AppCompatActivity {
         switch(view.getId()){
             case R.id.nameInput:
                 tietNameInput.setError(null);
-                tilNameInput.setErrorEnabled(false);
+                tilNameInputWrapper.setErrorEnabled(false);
                 break;
             case R.id.emailInput:
                 tietEmailInput.setError(null);
-                tilEmailInput.setErrorEnabled(false);
+                tilEmailInputWrapper.setErrorEnabled(false);
                 break;
             case R.id.passwordInput:
                 tietPasswdInput.setError(null);
-                tilPasswdInput.setErrorEnabled(false);
+                tilPasswdInputWrapper.setErrorEnabled(false);
                 break;
             case R.id.confirmPasswordInput:
                 tietPsswdConfirm.setError(null);
-                tilPsswdConfirm.setErrorEnabled(false);
+                tilPsswdConfirmWrapper.setErrorEnabled(false);
                 break;
             default:
         }
